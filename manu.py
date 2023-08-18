@@ -63,12 +63,13 @@ while True:
     print("6:Update champion")
     print("7:Display the champion have same role")
     print("8:Search the champion (name)")
-    print("9:Exit")
-    action = int(input('choose a option[1..9]: '))
-    if action > 9 or action <= 0:
+    print("9:Open file infor champion")
+    print("10: Exit")
+    action = int(input('choose a option[1..10]: '))
+    if action > 10 or action <= 0:
         continue
 
-    if action == 9:
+    if action == 10:
         print('Good bye!')
         quit(0)
 
@@ -142,4 +143,12 @@ while True:
             lol.searchChampion(name)
         else:
             print("Can not find champion (Syntax error)")
-
+    #update action 9
+    elif action == 9:
+        file_name = input('Enter a file: ')
+        try:
+            file_name = open(file_name)
+        except:
+            print('Not found')
+        file_name = file_name.read()
+        print(file_name)
