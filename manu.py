@@ -148,7 +148,14 @@ while True:
         file_name = input('Enter a file: ')
         try:
             file_name = open(file_name)
+            with open(file_name, 'r') as csv:
+                for line in csv: 
+                    print(line)
+                    # use split function to separate at ","
+                    #addChampionAttributesIntoTable(id,name,role,health,attack,defense,attack_speed)
+
         except:
             print('Not found')
         file_name = file_name.read()
         print(file_name)
+
