@@ -81,7 +81,7 @@ while True:
         attack = isAttackvalid(input("Enter Attack champion: "))
         defense = isDefensevalid(input("Enter Defense champion: "))
         attack_speed = isAttackSpeed(input("Enter Attack Speed champion: "))
-        if id and name and role and health and attack and defense:
+        if id and name and role and health and attack and defense and attack_speed:
             lol.addChampionAttributesIntoTable(id, name, role, health, attack, defense,attack_speed)
         else:
             print("Can not add champion (Syntax error)")
@@ -145,10 +145,23 @@ while True:
             print("Can not find champion (Syntax error)")
     #update action 9
     elif action == 9:
+
         file_name = input('Enter a file: ')
         try:
-            file_name = open(file_name)
-        except:
-            print('Not found')
-        file_name = file_name.read()
-        print(file_name)
+            with open(file_name, "r") as csv_file:
+                reader = csv_file.readlines()
+                for line in reader:
+                    attr = line.strip().split(',')
+                    champion_id = attr[0]
+                    champion_name = attr[1]
+                    champion_role = attr[2]
+                    champion_health = attr[3]
+                    champion_attack = attr[4]
+                    champion_defense = attr[5]
+                    champion_attackSpeed = attr[6]
+                    lol.addChampionAttributesIntoTable(champion_id, champion_name, champion_role, champion_health,
+                                                           champion_attack, champion_defense, champion_attackSpeed)
+
+
+        except FileNotFoundError:
+            print('File not found')
