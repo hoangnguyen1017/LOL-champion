@@ -51,7 +51,26 @@ def isAttackSpeed(input):
             return input
     else:
         print("The Attack Speed format must be a decimal")
+def champion_outcome(champions):
+    battle_result = []
 
+    for champion1 in champions:
+        for champion2 in champions:
+            if champion1 != champion2:
+                effective_damage_champ1 = (int(champion1.attack) * 3 - int(champion2.defense) * 2) * float(champion1.attackSpeed)
+                hits_required_champ1 = int(champion2.health) / int(effective_damage_champ1)
+
+                effective_damage_champ2 = (int(champion2.attack) * 3 - int(champion1.defense) * 2) * float(champion2.attackSpeed)
+                hits_required_champ2 = int(champion1.health) / int(effective_damage_champ2)
+
+                if int(hits_required_champ1) < int(hits_required_champ2):
+                    winner = [champion1.name]
+                else:
+                    winner = [champion2.name]
+
+                battle_result.append((champion1.name, champion2.name, winner))
+
+    return battle_result
 
 while True:
     print("**********MENU**********")
@@ -145,17 +164,42 @@ while True:
             print("Can not find champion (Syntax error)")
     #update action 9
     elif action == 9:
+
         file_name = input('Enter a file: ')
         try:
-            file_name = open(file_name)
-            with open(file_name, 'r') as csv:
-                for line in csv: 
-                    print(line)
-                    # use split function to separate at ","
-                    #addChampionAttributesIntoTable(id,name,role,health,attack,defense,attack_speed)
+            with open(file_name, "r") as csv_file:
+                reader = csv_file.readlines()
+                for line in reader:
+                    attr = line.strip().split(',')
+                    champion_id = attr[0]
+                    champion_name = attr[1]
+                    champion_role = attr[2]
+                    champion_health = attr[3]
+                    champion_attack = attr[4]
+                    champion_defense = attr[5]
+                    champion_attackSpeed = attr[6]
+                    lol.addChampionAttributesIntoTable(champion_id, champion_name, champion_role, champion_health,
+                                                       champion_attack, champion_defense, champion_attackSpeed)
 
-        except:
-            print('Not found')
-        file_name = file_name.read()
-        print(file_name)
+
+        except FileNotFoundError:
+            print('File not found')
+    elif action == 10:
+        champions = []
+        view = "select * from Champion"
+        records = lol.fetch_all(view)
+        for record in records:
+            id = record[0]
+            name = record[1]
+            role = record[2]
+            health = record[3]
+            attack = record[4]
+            defense = record[5]
+            attack_speed = record[6]
+            champion = Champion(id, name, role, health, attack, defense, attack_speed)
+            champions.append(champion)
+
+        result = champion_outcome(champions)
+        print(result)
+
 

@@ -2,3 +2,5 @@
 pycache
 .idea/
 .venv
+python
+.ipynb_checkpoints
