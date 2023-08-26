@@ -83,12 +83,13 @@ while True:
     print("7:Display the champion have same role")
     print("8:Search the champion (name)")
     print("9:Open file infor champion")
-    print("10: Exit")
-    action = int(input('choose a option[1..10]: '))
-    if action > 10 or action <= 0:
+    print("10: Battle result")
+    print("11: Exit")
+    action = int(input('choose a option[1..11]: '))
+    if action > 11 or action <= 0:
         continue
 
-    if action == 10:
+    if action == 11:
         print('Good bye!')
         quit(0)
 
@@ -184,6 +185,7 @@ while True:
 
         except FileNotFoundError:
             print('File not found')
+    #show battle result
     elif action == 10:
         champions = []
         view = "select * from Champion"
