@@ -185,7 +185,7 @@ while True:
 
         except FileNotFoundError:
             print('File not found')
-    #show battle result
+   
     elif action == 10:
         champions = []
         view = "select * from Champion"
