@@ -160,8 +160,6 @@ def fetch_one(sql, params=()):
     cur.execute(sql, params)
     return cur.fetchone()
 
-
-
 def executemany_sql( sql, params):
 
     cur = conn.cursor()
