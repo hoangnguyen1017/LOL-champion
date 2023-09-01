@@ -10,7 +10,6 @@ while True:
     choose = int(input("choose a option 1 , 2, 3: "))
     if choose > 3 or choose <= 0:
         continue
-
     if choose == 3:
         print('Good bye!')
         quit(0)
@@ -22,8 +21,6 @@ while True:
         if id and name1 and name2 and password:
             name = str(name1) + " " + str(name2)
             user_SQL.addUser(id, name, password)
-
-
         else:
             print("Can not create account (Syntax error) ")
     elif choose == 2:
@@ -35,7 +32,6 @@ while True:
 
         else:
             print("Logged in successfully")
-
             while True:
                 print("**********MENU**********")
                 print("1:Add champion")

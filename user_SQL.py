@@ -14,6 +14,8 @@ def addUser(id,name,password):
     elif fetch_one(view, (id,)) is None:
         execute_sql(add, (id,name,password))
         print("Account successfully created")
+    else:
+        print("Can not create account (Syntax error) ")
 
 
 def deleteUser(id):
@@ -21,7 +23,7 @@ def deleteUser(id):
     if fetch_one(view, (id,)) is not None:
         dele = """DELETE from User where id = ?"""
         execute_sql(dele,(id))
-        print("User Delete successfully")
+        print("Delete user successful")
     else:
         print("ID is not available")
 
