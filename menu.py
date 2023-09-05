@@ -2,6 +2,7 @@ import lol_SQL
 import util
 import champion
 import user_SQL
+import maskpass
 while True:
     print("**********WELCOME TO LOL CHAMPION**********")
     print("1: Create Account")
@@ -17,7 +18,7 @@ while True:
         id = util.isIdUserValid(input("Enter ID: "))
         name1 = util.isNameUserValid(input("Enter First Name : "))
         name2 = util.isNameUserValid(input("Enter Surname : "))
-        password = util.isPassValid(input("Enter Password (> 10 characters): "))
+        password = maskpass.advpass("Enter password (press of left ctrl to see password): ")
         if id and name1 and name2 and password:
             name = str(name1) + " " + str(name2)
             user_SQL.addUser(id, name, password)
@@ -25,7 +26,7 @@ while True:
             print("Can not create account (Syntax error) ")
     elif choose == 2:
         name = util.isNameloginAccountValid(input("Please enter your account: "))
-        password = util.isPassValid(input("Please enter a password: "))
+        password = maskpass.advpass("Enter password (Press of left ctrl to see password): ")
         check = user_SQL.validUser(name,password)
         if check is False:
             print("Wrong account or password. Please check again")
