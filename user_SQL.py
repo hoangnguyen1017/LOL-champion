@@ -22,7 +22,7 @@ def deleteUser(id):
     view = "select * from User where id = ?"
     if fetch_one(view, (id,)) is not None:
         dele = """DELETE from User where id = ?"""
-        execute_sql(dele,(id))
+        execute_sql(dele,(id,))
         print("Delete user successful")
     else:
         print("ID is not available")

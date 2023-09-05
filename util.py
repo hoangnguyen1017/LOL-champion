@@ -85,3 +85,4 @@ def champion_outcome(champions):
                 battle_result.append((champion1.name, champion2.name, winner))
 
     return battle_result
+
